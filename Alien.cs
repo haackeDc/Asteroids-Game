@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UniversalWindows {
-    class Alien {
+    public class Alien : MovingObject {
+        public Alien(float startX, float startY, Tuple<float, float> direction, float speed, float radius) 
+            : base(startX, startY, direction, speed, radius) {
+        }
     }
 }

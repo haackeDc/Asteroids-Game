@@ -1,4 +1,5 @@
-﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+﻿using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UniversalWindows {
     public class Explosion : IDrawable {
-        public void Draw(CanvasAnimatedControl canvas) {
+        public void Draw(CanvasDrawingSession canvas) {
             throw new NotImplementedException();
         }
     }
