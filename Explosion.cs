@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversalWindows {
+namespace Asteroids {
     public class Explosion : IDrawable {
         public void Draw(CanvasDrawingSession canvas) {
             throw new NotImplementedException();

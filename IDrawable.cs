@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversalWindows {
+namespace Asteroids {
     public interface IDrawable {
         void Draw(CanvasDrawingSession canvas);
     }
