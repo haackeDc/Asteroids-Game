@@ -45,7 +45,7 @@ namespace Asteroids {
                 , VMath.ScalarMultiply(VMath.GetPerpendicularVector(UnitDirectionVector), 8));
             Vector2[] trianglePoints = { triangleTip, triangleLeft, triangleRight };
             CanvasGeometry triangle = CanvasGeometry.CreatePolygon(canvas, trianglePoints);
-            canvas.DrawGeometry(triangle, Colors.CadetBlue);
+            canvas.FillGeometry(triangle, Colors.CadetBlue);
         }
     }
 }
