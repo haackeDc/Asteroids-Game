@@ -24,9 +24,10 @@ namespace Asteroids {
         Asteroids_Game game;
         public MainPage() {
             this.InitializeComponent();
-            game = new Asteroids_Game();
+            game = new Asteroids_Game(1400, 760);
             Window.Current.CoreWindow.KeyDown += OnKeyDown;
             Window.Current.CoreWindow.KeyUp += OnKeyUp;
+            
         }
 
         private void Canvas_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args) {
