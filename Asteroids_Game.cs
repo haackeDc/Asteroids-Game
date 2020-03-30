@@ -77,18 +77,55 @@ namespace Asteroids {
             if (IsRightButtonPressed) {
                 player.Rotate(-player.ROTATE_DEGREE_INCREMENT);
             }
-            if (IsSpaceBarPressed) {
-                if (player.LastFired == player.FIRE_COOLDOWN) {
+            if (IsSpaceBarPressed)
+            {
+                if (player.LastFired == player.FIRE_COOLDOWN && !player.IsDead())
+                {
                     player.LastFired = 0;
-                    Bullet newBullet = new Bullet(VMath.AddVectors(player.Position,new Vector2(rand.Next(8)-4,rand.Next(8)-4)), player.UnitDirectionVector, 20, 3);
+                    Bullet newBullet = new Bullet(VMath.AddVectors(player.Position, new Vector2(rand.Next(8) - 4, rand.Next(8) - 4)), player.UnitDirectionVector, 20, 3);
                     gameObjects.Add(newBullet);
                 }
             }
-            foreach (var obj in gameObjects)
+            if (rand.Next(1,100) <= 1) //random asteroid spawn chance
+            {
+                Asteroid newAsteroid = new Asteroid(new Vector2(rand.Next(0, canvasWidth), 0), new Vector2(rand.Next(-180, 180), rand.Next(-180, 180)), 1, rand.Next(15, 100));
+                gameObjects.Add(newAsteroid);
+            }
+
+            foreach (var obj in gameObjects.ToList())
+            {
                 obj.Move(canvasWidth, canvasHeight);
-            foreach(var obj in gameObjects.Where(b=>(b is Bullet)).ToList()) {
-                if (obj.Position.X < 0 || obj.Position.X > canvasWidth || obj.Position.Y < 0 || obj.Position.Y > canvasHeight) {
+                if (obj.IsDead())
+                {
                     gameObjects.Remove(obj);
+                }
+            }
+            foreach (var obj in gameObjects.Where((b => (b is Bullet))).ToList()) 
+            {
+                if (obj.Position.X < 0 || obj.Position.X > canvasWidth || obj.Position.Y < 0 || obj.Position.Y > canvasHeight) {
+                    obj.Destroy();
+                }
+            }
+            foreach (var obj in gameObjects.Where((a => (a is Asteroid))).ToList())
+            {
+                if ((obj.Position.X + obj.Radius > player.Position.X && obj.Position.X - obj.Radius < player.Position.X) && (obj.Position.Y + obj.Radius > player.Position.Y && obj.Position.Y - obj.Radius < player.Position.Y))
+                {
+                    if (!player.IsDead())
+                    {
+                        player.AsteroidCollision(obj);
+                        obj.Destroy();
+                    }
+                }
+            }
+            foreach (var ast in gameObjects.Where((a => (a is Asteroid))).ToList())
+            {
+                foreach (var bul in gameObjects.Where((b => (b is Bullet))).ToList())
+                {
+                    if ((ast.Position.X + ast.Radius > bul.Position.X && ast.Position.X - ast.Radius < bul.Position.X) && (ast.Position.Y + ast.Radius > bul.Position.Y && ast.Position.Y - ast.Radius < bul.Position.Y))
+                    {
+                        gameObjects.Add((ast as Asteroid).Half());
+                        bul.Destroy();
+                    }
                 }
             }
         }

@@ -23,6 +23,7 @@ namespace Asteroids {
             Speed = speed;
             UnitDirectionVector = VMath.GetUnitVector(direction);
             Radius = radius;
+            Health = 1;
         }
 
         //Interface implementations
@@ -39,6 +40,16 @@ namespace Asteroids {
                 if (Position.Y < 0)
                     Position = new Vector2(Position.X, canvasHeight);
             }
+        }
+
+        public bool IsDead()
+        {
+            return this.Health <= 0;
+        }
+
+        public void Destroy()
+        {
+            this.Health = 0;
         }
     }
 }

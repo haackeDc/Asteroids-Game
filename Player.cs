@@ -2,11 +2,13 @@
 using Microsoft.Graphics.Canvas.Geometry;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace Asteroids {
     class Player : MovingObject {
@@ -21,7 +23,7 @@ namespace Asteroids {
             Health = MAX_HEALTH;
         }
 
-        public void AsteroidCollision(Asteroid asteroid) {
+        public void AsteroidCollision(MovingObject asteroid) {
             Health -= (int)asteroid.Radius;
         }
 
@@ -45,6 +47,7 @@ namespace Asteroids {
                 , VMath.ScalarMultiply(VMath.GetPerpendicularVector(UnitDirectionVector), 8));
             Vector2[] trianglePoints = { triangleTip, triangleLeft, triangleRight };
             CanvasGeometry triangle = CanvasGeometry.CreatePolygon(canvas, trianglePoints);
+
             canvas.FillGeometry(triangle, Colors.CadetBlue);
         }
     }

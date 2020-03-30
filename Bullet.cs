@@ -13,7 +13,7 @@ namespace Asteroids {
             : base(startPos, direction, speed, radius) { }
 
         public override void Draw(CanvasDrawingSession canvas) {
-            canvas.FillEllipse(Position, Radius, Radius, Colors.White);
+            canvas.FillEllipse(Position, Radius, Radius, Colors.Yellow);
         }
     }
 }
