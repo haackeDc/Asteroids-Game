@@ -45,7 +45,12 @@ namespace Asteroids {
             }
             else
             {
-                args.DrawingSession.DrawText("Game over! Do you want to play again? (Y/N)", 300, 300, Colors.Blue);
+                var fontFormat = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
+                {
+                    FontSize = 48
+                };
+                args.DrawingSession.Clear(Colors.Red);
+                args.DrawingSession.DrawText("  Game over! Do you want to play again? (Y/N)", 0, 200, Colors.DarkSlateGray, fontFormat);
             }
         }
 
