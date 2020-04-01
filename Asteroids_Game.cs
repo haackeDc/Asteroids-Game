@@ -24,6 +24,7 @@ namespace Asteroids {
         public bool IsRightButtonPressed { get; set; }
 
         public bool IsSpaceBarPressed { get; set; }
+        public bool gameOver { get; private set; }
 
         public int canvasWidth, canvasHeight;
 
@@ -34,6 +35,7 @@ namespace Asteroids {
             canvasWidth = width;
             canvasHeight = height;
             gameObjects = new List<MovingObject>();
+            gameOver = false;
             InitializeObjects();
 
         }
@@ -127,6 +129,10 @@ namespace Asteroids {
                         bul.Destroy();
                     }
                 }
+            }
+            if(player.Health <= 0)
+            {
+                gameOver = true;
             }
         }
     }

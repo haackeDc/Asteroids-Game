@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,8 +23,10 @@ namespace Asteroids {
     /// </summary>
     public sealed partial class MainPage : Page {
         Asteroids_Game game;
+        MainMenu mainMenu;
         public MainPage() {
             this.InitializeComponent();
+            mainMenu = new MainMenu();
             game = new Asteroids_Game(1400, 760);
             Window.Current.CoreWindow.KeyDown += OnKeyDown;
             Window.Current.CoreWindow.KeyUp += OnKeyUp;
@@ -31,10 +34,23 @@ namespace Asteroids {
         }
 
         private void Canvas_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args) {
-            game.DrawAllGameObjects(args.DrawingSession);
+            if (!mainMenu.gameStarted)
+            {
+                mainMenu.DrawMainMenu(args.DrawingSession);
+            }
+            else if (!game.gameOver)
+            {
+                game.DrawAllGameObjects(args.DrawingSession);
+
+            }
+            else
+            {
+                args.DrawingSession.DrawText("Game over! Do you want to play again? (Y/N)", 300, 300, Colors.Blue);
+            }
         }
 
         private void Canvas_Update(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedUpdateEventArgs args) {
+
             game.Update();
         }
 
@@ -75,6 +91,23 @@ namespace Asteroids {
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Space) {
                 game.IsSpaceBarPressed = false;
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.Y && game.gameOver == true)
+            {
+                game = new Asteroids_Game(1400, 760);
+                Window.Current.CoreWindow.KeyDown += OnKeyDown;
+                Window.Current.CoreWindow.KeyUp += OnKeyUp;
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.N && game.gameOver == true)
+            {
+                mainMenu = new MainMenu();
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.Number1 && mainMenu.gameStarted == false)
+            {
+                mainMenu.gameStarted = true;
+                game = new Asteroids_Game(1400, 760);
+                Window.Current.CoreWindow.KeyDown += OnKeyDown;
+                Window.Current.CoreWindow.KeyUp += OnKeyUp;
             }
         }
     }

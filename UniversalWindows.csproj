@@ -126,6 +126,7 @@
     <Compile Include="Explosion.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="IMoveable.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
