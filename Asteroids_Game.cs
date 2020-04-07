@@ -90,9 +90,16 @@ namespace Asteroids {
             }
             if (rand.Next(1,100) <= 1) //random asteroid spawn chance
             {
-                Asteroid newAsteroid = new Asteroid(new Vector2(rand.Next(0, canvasWidth), 0), new Vector2(rand.Next(-180, 180), rand.Next(-180, 180)), 1, rand.Next(15, 100));
+                Asteroid newAsteroid = new Asteroid(new Vector2(rand.Next(0, canvasWidth), 0), new Vector2(rand.Next(-180, 180), rand.Next(-180, 180)), rand.Next(1, 5), rand.Next(15, 100));
                 gameObjects.Add(newAsteroid);
             }
+
+            foreach (var obj in gameObjects.Where((h => (h is HealthBar))).ToList())
+            {
+                gameObjects.Remove(obj);
+            }
+            HealthBar gameHealthBar = new HealthBar(new Vector2(canvasWidth, canvasHeight), new Vector2(0, 0), 0, player.Health);
+            gameObjects.Add(gameHealthBar);
 
             foreach (var obj in gameObjects.ToList())
             {
@@ -102,6 +109,7 @@ namespace Asteroids {
                     gameObjects.Remove(obj);
                 }
             }
+
             foreach (var obj in gameObjects.Where((b => (b is Bullet))).ToList()) 
             {
                 if (obj.Position.X < 0 || obj.Position.X > canvasWidth || obj.Position.Y < 0 || obj.Position.Y > canvasHeight) {

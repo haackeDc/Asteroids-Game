@@ -124,6 +124,7 @@
     <Compile Include="Asteroids_Game.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Explosion.cs" />
+    <Compile Include="HealthBar.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="IMoveable.cs" />
     <Compile Include="MainMenu.cs" />

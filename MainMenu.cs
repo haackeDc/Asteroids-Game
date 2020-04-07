@@ -33,7 +33,7 @@ namespace Asteroids
                 FontSize = 36
             };
             drawingSession.DrawText("CoronAsteroids", 250, 300, Colors.DarkSlateGray, fontFormat);
-            drawingSession.DrawText("The Lone white blood cell Osmosis Jones braves the bloodstream to fight against the invisible \n and lifeless virus, COVID-19....Shoot the virus envelopes to survive and twart the pandemic!", 250, 400, Colors.DarkSlateGray, fontFormat2);
+            drawingSession.DrawText("The Lone white blood cell Osmosis Jones braves the bloodstream to fight against the invisible \n and lifeless virus, COVID-19....Shoot the virus envelopes to survive and thwart the pandemic!", 250, 400, Colors.DarkSlateGray, fontFormat2);
             drawingSession.DrawText("1 : Start Game", 350, 450, Colors.DarkSlateGray, fontFormat3);
         }
     }
