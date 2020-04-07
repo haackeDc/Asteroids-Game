@@ -68,7 +68,7 @@ namespace Asteroids
                 FontSize = 36
             };
             drawingSession.DrawText("Press \"B\" to exit", 765, 0, Colors.DarkSlateGray, fontFormat3);
-            drawingSession.DrawText("Created By: \n\n Joseph Cornell \n\n Jason Soltis \n\n Daniel Haacke \n\n Aleksandra Skor", 250, 200, Colors.DarkSlateGray, fontFormat3);
+            drawingSession.DrawText("Created By: \n\n Joseph Cornell \n\n Jason Soltis \n\n Daniel Haacke \n\n Aleksandra Shor", 250, 200, Colors.DarkSlateGray, fontFormat3);
         }
     }
 }
