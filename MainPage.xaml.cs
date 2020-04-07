@@ -36,7 +36,18 @@ namespace Asteroids {
         private void Canvas_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args) {
             if (!mainMenu.gameStarted)
             {
-                mainMenu.DrawMainMenu(args.DrawingSession);
+                if (mainMenu.onInstructions == false && mainMenu.onCredits == false)
+                {
+                    mainMenu.DrawMainMenu(args.DrawingSession);
+                }
+                else if(mainMenu.onInstructions == true && mainMenu.onCredits == false)
+                {
+                    mainMenu.DrawInstructions(args.DrawingSession);
+                }
+                else
+                {
+                    mainMenu.DrawCredits(args.DrawingSession);
+                }
             }
             else if (!game.gameOver)
             {
@@ -113,6 +124,19 @@ namespace Asteroids {
                 game = new Asteroids_Game(1400, 760);
                 Window.Current.CoreWindow.KeyDown += OnKeyDown;
                 Window.Current.CoreWindow.KeyUp += OnKeyUp;
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.Number2 && mainMenu.gameStarted == false)
+            {
+                mainMenu.onInstructions = true;
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.Number3 && mainMenu.gameStarted == false)
+            {
+                mainMenu.onCredits = true;
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.B && mainMenu.gameStarted == false)
+            {
+                mainMenu.onInstructions = false;
+                mainMenu.onCredits = false;
             }
         }
     }
