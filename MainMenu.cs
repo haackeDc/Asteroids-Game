@@ -51,6 +51,12 @@ namespace Asteroids
             {
                 FontSize = 36
             };
+            var fontFormat = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
+            {
+                FontSize = 12
+            };
+            drawingSession.DrawText("HEALTH is shown at the top through a health bar\n avoid the cell envelopes to not take damage\n if your health goes to 0, you lose!", 100, 100, Colors.DarkSlateGray, fontFormat);
+            drawingSession.DrawText("shoot cell envelopes to split them until they're small enough to be destroyed\n destroy the cells to survive!", 400, 100, Colors.DarkSlateGray, fontFormat);
             drawingSession.DrawText("Press \"B\" to exit", 765, 0, Colors.DarkSlateGray, fontFormat3);
             drawingSession.DrawText("Instructions", 250, 300, Colors.DarkSlateGray, fontFormat3);
             drawingSession.DrawText("UP:     (Use W or up arrow key)", 300, 350, Colors.DarkSlateGray, fontFormat3);
