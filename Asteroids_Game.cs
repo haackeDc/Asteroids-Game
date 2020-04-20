@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Graphics.Canvas;
+using Windows.Media.Core;
 
 namespace Asteroids {
     class Asteroids_Game {
@@ -25,6 +26,7 @@ namespace Asteroids {
 
         public bool IsSpaceBarPressed { get; set; }
         public bool gameOver { get; private set; }
+        public CanvasBitmap spaceImage { get; set; }
 
         public int canvasWidth, canvasHeight;
 
@@ -36,6 +38,7 @@ namespace Asteroids {
             canvasHeight = height;
             gameObjects = new List<MovingObject>();
             gameOver = false;
+            App.soundPlayer.Source = MediaSource.CreateFromUri(new Uri($"ms-appx:///Assets/fire.mp3"));
             InitializeObjects();
 
         }
@@ -47,7 +50,6 @@ namespace Asteroids {
                 PLAYER_START_SPEED, PLAYER_START_RADIUS);
             gameObjects.Add(player);
         }
-
         public void DrawAllGameObjects(CanvasDrawingSession canvas) {
             foreach (var obj in gameObjects) {
                 obj.Draw(canvas);
@@ -81,11 +83,13 @@ namespace Asteroids {
             }
             if (IsSpaceBarPressed)
             {
+                App.soundPlayer.Play();
                 if (player.LastFired == player.FIRE_COOLDOWN && !player.IsDead())
                 {
                     player.LastFired = 0;
                     Bullet newBullet = new Bullet(VMath.AddVectors(player.Position, new Vector2(rand.Next(8) - 4, rand.Next(8) - 4)), player.UnitDirectionVector, 20, 3);
                     gameObjects.Add(newBullet);
+                   
                 }
             }
             if (rand.Next(1,100) <= 1) //random asteroid spawn chance

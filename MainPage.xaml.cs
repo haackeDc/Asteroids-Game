@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.UI.Xaml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -13,6 +16,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -24,6 +28,8 @@ namespace Asteroids {
     public sealed partial class MainPage : Page {
         Asteroids_Game game;
         MainMenu mainMenu;
+        CanvasBitmap spaceImage;
+
         public MainPage() {
             this.InitializeComponent();
             mainMenu = new MainMenu();
@@ -60,8 +66,9 @@ namespace Asteroids {
                 {
                     FontSize = 48
                 };
-                args.DrawingSession.Clear(Colors.Red);
-                args.DrawingSession.DrawText("  Game over! Do you want to play again? (Y/N)", 0, 200, Colors.DarkSlateGray, fontFormat);
+                args.DrawingSession.DrawImage(spaceImage);
+                //args.DrawingSession.Clear(Colors.Red);
+                args.DrawingSession.DrawText("  Game over! Do you want to play again? (Y/N)", 0, 200, Colors.LightYellow, fontFormat);
             }
         }
 
@@ -69,9 +76,15 @@ namespace Asteroids {
 
             game.Update();
         }
+        private void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args) {
+            args.TrackAsyncAction(CreateResources(sender).AsAsyncAction());
+        }
 
-        private void Canvas_CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args) {
-
+        async Task CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender)
+        {
+            spaceImage = await CanvasBitmap.LoadAsync(sender, "Assets/spacepic.png");
+            game.spaceImage = spaceImage;
+            mainMenu.spaceImage = spaceImage;
         }
 
         private void OnKeyDown(CoreWindow sender, KeyEventArgs args) {
