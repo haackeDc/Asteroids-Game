@@ -57,8 +57,8 @@ namespace Asteroids
             {
                 FontSize = 12
             };
-            drawingSession.DrawText("HEALTH is shown at the top through a health bar\n avoid the cell envelopes to not take damage\n if your health goes to 0, you lose!", 100, 100, Colors.LightYellow, fontFormat);
-            drawingSession.DrawText("hoot cell envelopes to split them until they're small enough to be destroyed\n destroy the cells to survive!", 400, 100, Colors.LightYellow, fontFormat);
+            drawingSession.DrawText("HEALTH is shown at the top through a health bar\nAvoid the virus envelopes to not take damage\nIf your health goes to 0, you lose!", 100, 100, Colors.LightYellow, fontFormat);
+            drawingSession.DrawText("Shoot virus envelopes to split them until they're small enough to be destroyed\nDestroy the viruses to survive!", 400, 100, Colors.LightYellow, fontFormat);
             drawingSession.DrawText("Press \"B\" to exit", 765, 0, Colors.LightYellow, fontFormat3);
             drawingSession.DrawText("Instructions", 250, 300, Colors.LightYellow, fontFormat3);
             drawingSession.DrawText("UP:       (Use W or up arrow key)", 300, 350, Colors.LightYellow, fontFormat3);
