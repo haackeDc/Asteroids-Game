@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System;
 using Windows.UI;
+using Windows.Foundation;
 
 namespace Asteroids
 {
@@ -10,17 +11,25 @@ namespace Asteroids
         public bool onInstructions { get; set; }
         public bool onCredits { get; set; }
         public CanvasBitmap spaceImage { get; set; }
+
+        //public Point point1 { get; set; }
+        //public Point point2 { get; set; }
+
+        //public Rect rect { get; set; }
         public MainMenu()
         {
             gameStarted = false;
             onCredits = false;
             onInstructions = false;
+            //point1 = new Point(0, 0);
+            //point2 = new Point(1100, 1100);
+            //rect = new Rect(point1, point2);
             
         }
 
         public void DrawMainMenu(CanvasDrawingSession drawingSession)
-        {
-            drawingSession.DrawImage(spaceImage);
+        {   
+            drawingSession.DrawImage(spaceImage);//would put rect in here
             //drawingSession.Clear(Colors.Red);
             var fontFormat = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
             {
@@ -46,8 +55,8 @@ namespace Asteroids
             drawingSession.DrawText("3 : Credits", 350, 550, Colors.LightYellow, fontFormat3);
         }
         public void DrawInstructions(CanvasDrawingSession drawingSession)
-        {
-            drawingSession.DrawImage(spaceImage);
+        {   
+            drawingSession.DrawImage(spaceImage);//would put rect in here
             //drawingSession.Clear(Colors.Red);
             var fontFormat3 = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
             {
@@ -69,8 +78,8 @@ namespace Asteroids
         }
 
         public void DrawCredits(CanvasDrawingSession drawingSession)
-        {
-            drawingSession.DrawImage(spaceImage);
+        {   
+            drawingSession.DrawImage(spaceImage);//would put rect in here
             //drawingSession.Clear(Colors.Red);
             var fontFormat3 = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
             {

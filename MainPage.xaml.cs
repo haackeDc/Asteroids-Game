@@ -29,6 +29,10 @@ namespace Asteroids {
         Asteroids_Game game;
         MainMenu mainMenu;
         CanvasBitmap spaceImage;
+        //public Point point1 { get; set; }
+        //public Point point2 { get; set; }
+
+        //public Rect rect { get; set; }
 
         public MainPage() {
             this.InitializeComponent();
@@ -36,7 +40,10 @@ namespace Asteroids {
             game = new Asteroids_Game(1400, 760);
             Window.Current.CoreWindow.KeyDown += OnKeyDown;
             Window.Current.CoreWindow.KeyUp += OnKeyUp;
-            
+            //point1 = new Point(0, 0);
+            //point2 = new Point(1100, 1100);
+            //rect = new Rect(point1, point2);
+
         }
 
         private void Canvas_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args) {
@@ -44,6 +51,7 @@ namespace Asteroids {
             {
                 if (mainMenu.onInstructions == false && mainMenu.onCredits == false)
                 {
+                    
                     mainMenu.DrawMainMenu(args.DrawingSession);
                 }
                 else if(mainMenu.onInstructions == true && mainMenu.onCredits == false)
@@ -66,8 +74,9 @@ namespace Asteroids {
                 {
                     FontSize = 48
                 };
-                args.DrawingSession.DrawImage(spaceImage);
-                //args.DrawingSession.Clear(Colors.Red);
+                
+                args.DrawingSession.DrawImage(spaceImage);//would put rect in here
+
                 args.DrawingSession.DrawText("  Game over! Do you want to play again? (Y/N)", 0, 200, Colors.LightYellow, fontFormat);
             }
         }
