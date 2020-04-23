@@ -20,6 +20,9 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The sound is taken from https://www.101soundboards.com/sounds/23409-fire
+// The image is taken from https://www.playstarmancer.com/    
+//https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.playstarmancer.com%2F&psig=AOvVaw2-gtzCVG4w3hpAfMAb9T1O&ust=1587672000549000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCODsx6Dp_OgCFQAAAAAdAAAAABAD
 
 namespace Asteroids {
     /// <summary>
