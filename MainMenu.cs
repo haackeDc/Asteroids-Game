@@ -2,6 +2,7 @@
 using System;
 using Windows.UI;
 using Windows.Foundation;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Asteroids
 {
@@ -18,6 +19,7 @@ namespace Asteroids
         //public Rect rect { get; set; }
         public MainMenu()
         {
+            
             gameStarted = false;
             onCredits = false;
             onInstructions = false;
@@ -29,8 +31,8 @@ namespace Asteroids
 
         public void DrawMainMenu(CanvasDrawingSession drawingSession)
         {   
-            drawingSession.DrawImage(spaceImage);//would put rect in here
-            //drawingSession.Clear(Colors.Red);
+            //drawingSession.DrawImage(spaceImage);//would put rect in here
+            drawingSession.Clear(Colors.Red);
             var fontFormat = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
             {
                 FontSize = 72,
@@ -56,8 +58,8 @@ namespace Asteroids
         }
         public void DrawInstructions(CanvasDrawingSession drawingSession)
         {   
-            drawingSession.DrawImage(spaceImage);//would put rect in here
-            //drawingSession.Clear(Colors.Red);
+            //drawingSession.DrawImage(spaceImage);//would put rect in here
+            drawingSession.Clear(Colors.Red);
             var fontFormat3 = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
             {
                 FontSize = 36
@@ -79,8 +81,8 @@ namespace Asteroids
 
         public void DrawCredits(CanvasDrawingSession drawingSession)
         {   
-            drawingSession.DrawImage(spaceImage);//would put rect in here
-            //drawingSession.Clear(Colors.Red);
+            //drawingSession.DrawImage(spaceImage);//would put rect in here
+            drawingSession.Clear(Colors.Red);
             var fontFormat3 = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat
             {
                 FontSize = 34
